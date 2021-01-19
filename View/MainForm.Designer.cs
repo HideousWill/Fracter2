@@ -30,7 +30,6 @@
 		{
 			this.MainSplitContainer = new System.Windows.Forms.SplitContainer();
 			this.MyConsole = new Fracter2.View.ConsoleCtl();
-			this.ColorPicker = new System.Windows.Forms.ColorDialog();
 			this.MainAppPanel = new Fracter2.View.MainAppPanelCtl();
 			((System.ComponentModel.ISupportInitialize)(this.MainSplitContainer)).BeginInit();
 			this.MainSplitContainer.Panel1.SuspendLayout();
@@ -100,7 +99,6 @@
 
 		private System.Windows.Forms.SplitContainer MainSplitContainer;
 		private ConsoleCtl MyConsole;
-		private System.Windows.Forms.ColorDialog ColorPicker;
 		private MainAppPanelCtl MainAppPanel;
 	}
 }

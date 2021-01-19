@@ -37,11 +37,5 @@ namespace Fracter2.View.Drawables
 
 			graphics.DrawLine( Pen, s, e );
 		}
-
-		//----------------------------------------------------------------------
-		public void Dispose()
-		{
-			Pen.Dispose();
-		}
 	}
 }

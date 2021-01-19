@@ -21,6 +21,7 @@ namespace Fracter2.View
 
 		List< IDrawable > Layers { get; } = new List< IDrawable >();
 
+		//----------------------------------------------------------------------
 		public Color BackgroundColor
 		{
 			get => BackColor;

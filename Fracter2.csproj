@@ -62,6 +62,7 @@
     <Compile Include="Data\DrawableDataGenerator.cs" />
     <Compile Include="Data\IDrawable.cs" />
     <Compile Include="Program.cs" />
+    <Compile Include="View\Drawables\Polyline.cs" />
     <Compile Include="View\MainAppPanelCtl.cs">
       <SubType>UserControl</SubType>
     </Compile>

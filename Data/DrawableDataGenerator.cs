@@ -6,6 +6,7 @@ namespace Fracter2.Data
 {
 	class DrawableDataGenerator
 	{
+		//----------------------------------------------------------------------
 		public int[,] GenerateIndexedImage()
 		{
 			var pixels = new int[256, 256];
@@ -25,6 +26,7 @@ namespace Fracter2.Data
 			return pixels;
 		}
 
+		//----------------------------------------------------------------------
 		public Markers GenerateMarkers( float scale = 1f )
 		{
 			var markers = new Markers();
