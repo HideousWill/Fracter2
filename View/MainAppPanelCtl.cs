@@ -25,6 +25,8 @@ namespace Fracter2.View
 
 			var drawable = new ImageDrawable( pixels, new GrayScaleColorTable( 256 ) );
 
+			drawable.Modifiers.Add( new CenterInModifier {Rect = DrawableCtl.ClientRectangle } );
+
 			DrawableCtl.Draw( drawable );
 		}
 
@@ -38,12 +40,17 @@ namespace Fracter2.View
 		//----------------------------------------------------------------------
 		void TestLayersButton_Click( object sender, EventArgs e )
 		{
-			var pixels   = Generator.GenerateIndexedImage();
-			var image    = new ImageDrawable( pixels, new GrayScaleColorTable( 256 ) );
-			var markers  = Generator.GenerateMarkers( 10f );
+			var pixels = Generator.GenerateIndexedImage();
+			var image  = new ImageDrawable( pixels, new GrayScaleColorTable( 256 ) );
+			image.Modifiers.Add( new CenterInModifier {Rect = DrawableCtl.ClientRectangle} );
+
+			var markers = Generator.GenerateRandomMarkers( 10, 255f );
+			markers.Modifiers.Add( new ScaleModifier {Scale = 5f} );
+			markers.Modifiers.Add( new ColorModifier {Color = Color.Red} );
+
 			var polyline = new Polyline();
-			polyline.AddRange( markers );
-			polyline.Pen = new Pen( Color.Orange );
+			polyline.Points.AddRange( markers.Points );
+			polyline.Modifiers.Add( new ColorModifier {Color = Color.SlateBlue} );
 
 			DrawableCtl.AddLayer( image );
 			DrawableCtl.AddLayer( markers );

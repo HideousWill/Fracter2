@@ -1,37 +1,42 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Drawing;
 using Fracter2.Data;
 
 namespace Fracter2.View.Drawables
 {
-	public abstract class DrawablePointFs : List< PointF >, IDrawable
+	public abstract class DrawablePointFs : DrawableBase
 	{
 		//----------------------------------------------------------------------
-		public Pen Pen { get; set; }
-
-		//----------------------------------------------------------------------
-		public abstract void Draw( Graphics graphics );
-
-		//----------------------------------------------------------------------
-		public void Dispose()
+		Pen _Pen = new Pen( Color.Magenta );
+		public Pen Pen
 		{
-			Dispose(true);
-			GC.SuppressFinalize(this);
+			get => _Pen;
+			set
+			{
+				_Pen?.Dispose();
+				_Pen = value;
+			}
 		}
 
-		bool IsDisposed { get; set; }
+		//----------------------------------------------------------------------
+		public List< PointF > Points { get; } = new List< PointF >();
 
 		//----------------------------------------------------------------------
-		protected virtual void Dispose( bool disposing )
+		public override void Draw( Graphics graphics )
 		{
-			if( IsDisposed ) return;
+			var c = GetMod< ColorModifier >();
 
-			if( disposing )
+			if( null != c )
 			{
-				IsDisposed = true;
-				Pen?.Dispose();
+				Pen = new Pen( c.Color );
 			}
+		}
+
+		//----------------------------------------------------------------------
+		protected override void Dispose( bool disposing )
+		{
+			base.Dispose( disposing );
+			Pen = null;
 		}
 	}
 }

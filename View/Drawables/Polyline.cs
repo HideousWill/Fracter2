@@ -6,7 +6,9 @@ namespace Fracter2.View.Drawables
     {
         public override void Draw( Graphics graphics )
         {
-            graphics.DrawLines( Pen, this.ToArray() );
+			base.Draw( graphics );
+
+            graphics.DrawLines( Pen, Points.ToArray() );
         }
     }
 }

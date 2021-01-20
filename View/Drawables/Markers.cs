@@ -1,19 +1,14 @@
 ﻿using System.Drawing;
+using Fracter2.Data;
 
 namespace Fracter2.View.Drawables
 {
 	public class Markers : DrawablePointFs
 	{
 		//----------------------------------------------------------------------
-		public Markers()
-		{
-			Pen = new Pen( Color.Red );
-		}
-
-		//----------------------------------------------------------------------
 		public override void Draw( Graphics graphics )
 		{
-			foreach( var marker in this )
+			foreach( var marker in Points )
 			{
 				Draw( graphics, marker );
 			}
@@ -25,8 +20,17 @@ namespace Fracter2.View.Drawables
 		//----------------------------------------------------------------------
 		void Draw( Graphics graphics, PointF marker )
 		{
-			Draw( graphics, marker, Offset1 );
-			Draw( graphics, marker, Offset2 );
+			base.Draw( graphics );
+
+			var mod = GetMod< ScaleModifier >();
+
+			var scale = mod?.Scale ?? 1f;
+
+			var off1 = new SizeF( Offset1.Width * scale, Offset1.Height * scale );
+			var off2 = new SizeF( Offset2.Width * scale, Offset2.Height * scale );
+
+			Draw( graphics, marker, off1 );
+			Draw( graphics, marker, off2 );
 		}
 
 		//----------------------------------------------------------------------

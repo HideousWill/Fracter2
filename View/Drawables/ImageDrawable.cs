@@ -5,7 +5,7 @@ using Fracter2.Data.ColorTable;
 
 namespace Fracter2.View.Drawables
 {
-	public class ImageDrawable : IDrawable
+	public class ImageDrawable : DrawableBase
 	{
 		//----------------------------------------------------------------------
 		int[,] _Indices;
@@ -48,7 +48,7 @@ namespace Fracter2.View.Drawables
 		ColorTableBase Palette { get; set; }
 
 		//----------------------------------------------------------------------
-		public void Draw( Graphics graphics )
+		public override void Draw( Graphics graphics )
 		{
 			if( null == Image ) return;
 
@@ -60,11 +60,12 @@ namespace Fracter2.View.Drawables
 		{
 			if( null == Image ) return new PointF();
 
-//			var posX = (ClientRectangle.Width  - Image.Width)  / 2;
-//			var posY = (ClientRectangle.Height - Image.Height) / 2;
+			var clientRect = GetMod< CenterInModifier >();
 
-			var posX = 0f; // TODO: Figure out how to get a ClientRectangle
-			var posY = 0f;
+			if( null == clientRect ) return new PointF();
+
+			var posX = (clientRect.Rect.Width  - Image.Width)  / 2;
+			var posY = (clientRect.Rect.Height - Image.Height) / 2;
 
 			return new PointF( posX, posY );
 		}

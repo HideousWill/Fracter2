@@ -59,6 +59,7 @@
     <Compile Include="Data\ColorTable\ScaledColorTableBase.cs" />
     <Compile Include="Common\Helpers.cs" />
     <Compile Include="Controller\ControlWriter.cs" />
+    <Compile Include="Data\DrawableBase.cs" />
     <Compile Include="Data\DrawableDataGenerator.cs" />
     <Compile Include="Data\IDrawable.cs" />
     <Compile Include="Program.cs" />

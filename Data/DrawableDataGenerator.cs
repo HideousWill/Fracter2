@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using Fracter2.View.Drawables;
 
@@ -31,7 +32,7 @@ namespace Fracter2.Data
 		{
 			var markers = new Markers();
 
-			markers.AddRange( new List< PointF >()
+			markers.Points.AddRange( new List< PointF >()
 			{
 				new PointF(  1.0f * scale,  1.0f * scale ),
 				new PointF( 10.0f * scale,  1.0f * scale ),
@@ -39,6 +40,26 @@ namespace Fracter2.Data
 				new PointF( 10.0f * scale, 20.0f * scale ),
 				new PointF( 10.0f * scale, 30.0f * scale ),
 			});
+
+			return markers;
+		}
+
+		//----------------------------------------------------------------------
+		public Markers GenerateRandomMarkers( int count, float scale = 1f, int seed = -1 )
+		{
+			var rand = (seed < 0) 
+				? new Random() 
+				: new Random( seed );
+
+			var markers = new  Markers();
+
+			for( var i = 0; i < count; i++ )
+			{
+				var x = (float) rand.NextDouble();
+				var y = (float) rand.NextDouble();
+
+				markers.Points.Add( new PointF( x * scale, y * scale ) );
+			}
 
 			return markers;
 		}
