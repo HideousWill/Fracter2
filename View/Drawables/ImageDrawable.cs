@@ -5,7 +5,7 @@ using Fracter2.Data.ColorTable;
 
 namespace Fracter2.View.Drawables
 {
-	public class ImageDrawable : DrawableBase
+	public class ImageDrawable :  DrawableBase
 	{
 		//----------------------------------------------------------------------
 		int[,] _Indices;
@@ -78,8 +78,12 @@ namespace Fracter2.View.Drawables
 		}
 
 		//----------------------------------------------------------------------
-		public void Dispose()
+		protected override void Dispose( bool disposing )
 		{
+			if( IsDisposed ) return;
+
+			base.Dispose( disposing );
+
 			Image?.Dispose();
 		}
 	}

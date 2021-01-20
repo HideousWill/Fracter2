@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 using Fracter2.Data;
@@ -57,6 +58,8 @@ namespace Fracter2.View
 		//----------------------------------------------------------------------
 		public void Draw( IDrawable drawable )
 		{
+			DrawingLayers = false;
+
 			Drawable = drawable;
 
 			Invalidate();
@@ -75,8 +78,6 @@ namespace Fracter2.View
 
 			if( DrawingLayers )
 			{
-				DrawingLayers = false;
-
 				foreach( var layer in Layers )
 				{
 					layer.Draw( e.Graphics );
@@ -86,6 +87,20 @@ namespace Fracter2.View
 			{
 				Drawable.Draw( e.Graphics );
 			}
+		}
+
+		//----------------------------------------------------------------------
+		protected override void OnResize( EventArgs e )
+		{
+			base.OnResize( e );
+			Invalidate();
+		}
+
+		//----------------------------------------------------------------------
+		protected override void OnBackColorChanged( EventArgs e )
+		{
+			base.OnBackColorChanged( e );
+			Invalidate();
 		}
 	}
 }

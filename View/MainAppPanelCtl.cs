@@ -25,7 +25,7 @@ namespace Fracter2.View
 
 			var drawable = new ImageDrawable( pixels, new GrayScaleColorTable( 256 ) );
 
-			drawable.Modifiers.Add( new CenterInModifier {Rect = DrawableCtl.ClientRectangle } );
+			drawable.Modifiers.Add( new CenterInModifier {Rect = DrawableCtl.ClientRectangle} );
 
 			DrawableCtl.Draw( drawable );
 		}
@@ -52,6 +52,7 @@ namespace Fracter2.View
 			polyline.Points.AddRange( markers.Points );
 			polyline.Modifiers.Add( new ColorModifier {Color = Color.SlateBlue} );
 
+			DrawableCtl.ClearLayers();
 			DrawableCtl.AddLayer( image );
 			DrawableCtl.AddLayer( markers );
 			DrawableCtl.AddLayer( polyline );
