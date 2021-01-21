@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using Fracter2.Data;
 
-namespace Fracter2.Data
+namespace Fracter2.View.Drawables
 {
 	public abstract class DrawableBase : IDrawable
 	{

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 
-namespace Fracter2.Data
+namespace Fracter2.View.Drawables
 {
 	public interface IDrawable : IDisposable
 	{

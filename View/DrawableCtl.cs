@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 using Fracter2.Data;
+using Fracter2.View.Drawables;
 
 namespace Fracter2.View
 {
