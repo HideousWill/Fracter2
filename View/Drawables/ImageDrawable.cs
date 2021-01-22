@@ -1,6 +1,5 @@
 ﻿using System.Drawing;
 using System.Drawing.Imaging;
-using Fracter2.Data;
 using Fracter2.Data.ColorTable;
 
 namespace Fracter2.View.Drawables
@@ -60,12 +59,14 @@ namespace Fracter2.View.Drawables
 		{
 			if( null == Image ) return new PointF();
 
-			var clientRect = GetMod< CenterInModifier >();
+			var centerer = GetMod< CenterInModifier >();
 
-			if( null == clientRect ) return new PointF();
+			if( null == centerer ) return new PointF();
 
-			var posX = (clientRect.Rect.Width  - Image.Width)  / 2;
-			var posY = (clientRect.Rect.Height - Image.Height) / 2;
+			var clientRect = centerer.Parent.ClientRectangle;
+
+			var posX = (clientRect.Width  - Image.Width)  / 2;
+			var posY = (clientRect.Height - Image.Height) / 2;
 
 			return new PointF( posX, posY );
 		}

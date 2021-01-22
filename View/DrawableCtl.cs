@@ -2,25 +2,12 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
-using Fracter2.Data;
 using Fracter2.View.Drawables;
 
 namespace Fracter2.View
 {
 	public partial class DrawableCtl : UserControl
 	{
-		//----------------------------------------------------------------------
-		IDrawable _Drawable = new NullDrawable();
-		IDrawable Drawable
-		{
-			get => _Drawable;
-			set
-			{
-				_Drawable?.Dispose();
-				_Drawable = value;
-			}
-		}
-
 		List< IDrawable > Layers { get; } = new List< IDrawable >();
 
 		//----------------------------------------------------------------------
@@ -46,23 +33,9 @@ namespace Fracter2.View
 			Layers.Clear();
 		}
 
-		bool DrawingLayers { get; set; }
-
 		//----------------------------------------------------------------------
 		public void DrawLayers()
 		{
-			DrawingLayers = true;
-
-			Invalidate();
-		}
-
-		//----------------------------------------------------------------------
-		public void Draw( IDrawable drawable )
-		{
-			DrawingLayers = false;
-
-			Drawable = drawable;
-
 			Invalidate();
 		}
 
@@ -77,16 +50,9 @@ namespace Fracter2.View
 		{
 			base.OnPaint( e );
 
-			if( DrawingLayers )
+			foreach( var layer in Layers )
 			{
-				foreach( var layer in Layers )
-				{
-					layer.Draw( e.Graphics );
-				}
-			}
-			else
-			{
-				Drawable.Draw( e.Graphics );
+				layer.Draw( e.Graphics );
 			}
 		}
 

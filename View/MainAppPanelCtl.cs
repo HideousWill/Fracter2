@@ -25,16 +25,21 @@ namespace Fracter2.View
 
 			var drawable = new ImageDrawable( pixels, new GrayScaleColorTable( 256 ) );
 
-			drawable.Modifiers.Add( new CenterInModifier {Rect = DrawableCtl.ClientRectangle} );
+			drawable.Modifiers.Add( new CenterInModifier {Parent = DrawableCtl} );
 
-			DrawableCtl.Draw( drawable );
+			DrawableCtl.ClearLayers();
+			DrawableCtl.AddLayer( drawable );
+			DrawableCtl.DrawLayers();
 		}
 
 		//----------------------------------------------------------------------
 		void TestMarkersButton_Click( object sender, EventArgs e )
 		{
 			var markers = Generator.GenerateMarkers( 10f );
-			DrawableCtl.Draw( markers );
+			
+			DrawableCtl.ClearLayers();
+			DrawableCtl.AddLayer( markers );
+			DrawableCtl.DrawLayers();
 		}
 
 		//----------------------------------------------------------------------
@@ -42,7 +47,7 @@ namespace Fracter2.View
 		{
 			var pixels = Generator.GenerateIndexedImage();
 			var image  = new ImageDrawable( pixels, new GrayScaleColorTable( 256 ) );
-			image.Modifiers.Add( new CenterInModifier {Rect = DrawableCtl.ClientRectangle} );
+			image.Modifiers.Add( new CenterInModifier {Parent = DrawableCtl} );
 
 			var markers = Generator.GenerateRandomMarkers( 10, 255f );
 			markers.Modifiers.Add( new ScaleModifier {Scale = 5f} );

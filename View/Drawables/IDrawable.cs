@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Windows.Forms;
 
 namespace Fracter2.View.Drawables
 {
@@ -26,6 +27,6 @@ namespace Fracter2.View.Drawables
 
 	public class CenterInModifier : IDrawModifier
 	{
-		public Rectangle Rect { get; set; } = new Rectangle();
+		public Control   Parent { get; set; }
 	}
 }
