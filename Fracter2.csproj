@@ -33,6 +33,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Fracter2, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>bin\Debug\Fracter2.exe</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Numerics" />
@@ -47,6 +50,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controller\TextBoxWriter.cs" />
     <Compile Include="Data\ColorTable\BandedColorTable.cs" />
     <Compile Include="Data\ColorTable\ColorTableBase.cs" />
     <Compile Include="Data\ColorTable\ColorTableList.cs" />
@@ -60,6 +64,7 @@
     <Compile Include="Common\Helpers.cs" />
     <Compile Include="Controller\ControlWriter.cs" />
     <Compile Include="Data\DrawableDataGenerator.cs" />
+    <Compile Include="Model\PointGraph.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="View\Drawables\DrawableBase.cs" />
     <Compile Include="View\Drawables\IDrawable.cs" />
@@ -76,12 +81,6 @@
     <Compile Include="View\DrawableCtl.Designer.cs">
       <DependentUpon>DrawableCtl.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\ConsoleCtl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="View\ConsoleCtl.Designer.cs">
-      <DependentUpon>ConsoleCtl.cs</DependentUpon>
-    </Compile>
     <Compile Include="View\Drawables\DrawablePointFs.cs" />
     <Compile Include="View\Drawables\ImageDrawable.cs" />
     <Compile Include="View\MainForm.cs">
@@ -94,9 +93,6 @@
     <Compile Include="View\Drawables\Markers.cs" />
     <EmbeddedResource Include="View\DrawableCtl.resx">
       <DependentUpon>DrawableCtl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="View\ConsoleCtl.resx">
-      <DependentUpon>ConsoleCtl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\MainAppPanelCtl.resx">
       <DependentUpon>MainAppPanelCtl.cs</DependentUpon>
