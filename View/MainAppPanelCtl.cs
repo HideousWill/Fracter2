@@ -49,13 +49,22 @@ namespace Fracter2.View
 			var image  = new ImageDrawable( pixels, new GrayScaleColorTable( 256 ) );
 			image.Modifiers.Add( new CenterInModifier {Parent = DrawableCtl} );
 
-			var markers = Generator.GenerateRandomMarkers( 10, 255f );
-			markers.Modifiers.Add( new ScaleModifier {Scale = 5f} );
-			markers.Modifiers.Add( new ColorModifier {Color = Color.Red} );
+			var xlate = new TranslateModifier {Parent = DrawableCtl, Bounds = new Rectangle( 0, 0, 256, 256 )};
+
+			var points  = Generator.GenerateRandomPoints( 25, 255f );
+			
+			points.Sort( Sort_Y_X );
+			
+			var markers = new Markers();
+			markers.Points.AddRange( points );
+			markers.Modifiers.Add( new SizeModifier {Scale = 5f} );
+			markers.Modifiers.Add( new ColorModifier {Color = Color.DarkOrange} );
+			markers.Modifiers.Add( xlate );
 
 			var polyline = new Polyline();
-			polyline.Points.AddRange( markers.Points );
-			polyline.Modifiers.Add( new ColorModifier {Color = Color.SlateBlue} );
+			polyline.Points.AddRange( points );
+			polyline.Modifiers.Add( new ColorModifier {Color = Color.ForestGreen} );
+			polyline.Modifiers.Add( xlate );
 
 			DrawableCtl.ClearLayers();
 			DrawableCtl.AddLayer( image );
@@ -63,6 +72,19 @@ namespace Fracter2.View
 			DrawableCtl.AddLayer( polyline );
 			DrawableCtl.DrawLayers();
 		}
+
+		int Sort_Y_X( PointF left, PointF right )
+		{
+			if( left.Y < right.Y ) return -1;
+			if( left.Y > right.Y ) return  1;
+
+			if( left.X < right.X ) return -1;
+			if( left.X > right.X ) return  1;
+			
+			return 0;
+		}
+		
+		
 
 		//----------------------------------------------------------------------
 		void ColorPickerButton_Click( object sender, EventArgs e )

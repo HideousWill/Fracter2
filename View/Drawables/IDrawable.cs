@@ -15,7 +15,7 @@ namespace Fracter2.View.Drawables
 	public interface IDrawModifier
 	{ }
 
-	public class ScaleModifier : IDrawModifier
+	public class SizeModifier : IDrawModifier
 	{
 		public float Scale { get; set; } = 1f;
 	}
@@ -28,5 +28,11 @@ namespace Fracter2.View.Drawables
 	public class CenterInModifier : IDrawModifier
 	{
 		public Control   Parent { get; set; }
+	}
+
+	public class TranslateModifier : IDrawModifier
+	{
+		public Control   Parent { get; set; }
+		public Rectangle Bounds { get; set; }
 	}
 }

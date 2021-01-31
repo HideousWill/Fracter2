@@ -8,7 +8,9 @@ namespace Fracter2.View.Drawables
 		//----------------------------------------------------------------------
 		public override void Draw( Graphics graphics )
 		{
-			foreach( var marker in Points )
+			base.Draw( graphics );
+			
+			foreach( var marker in DrawablePoints )
 			{
 				Draw( graphics, marker );
 			}
@@ -22,7 +24,7 @@ namespace Fracter2.View.Drawables
 		{
 			base.Draw( graphics );
 
-			var mod = GetMod< ScaleModifier >();
+			var mod = GetMod< SizeModifier >();
 
 			var scale = mod?.Scale ?? 1f;
 

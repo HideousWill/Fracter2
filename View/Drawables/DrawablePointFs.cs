@@ -21,6 +21,8 @@ namespace Fracter2.View.Drawables
 		//----------------------------------------------------------------------
 		public List< PointF > Points { get; } = new List< PointF >();
 
+		protected List< PointF > DrawablePoints { get; private set; }
+
 		//----------------------------------------------------------------------
 		public override void Draw( Graphics graphics )
 		{
@@ -30,6 +32,27 @@ namespace Fracter2.View.Drawables
 			{
 				Pen = new Pen( c.Color );
 			}
+
+			DrawablePoints = ResolvePoints();
+		}
+
+		List< PointF > ResolvePoints()
+		{
+			var xlate = GetMod< TranslateModifier >();
+
+			if( null == xlate ) return Points;
+
+			var offsetX = (xlate.Parent.ClientRectangle.Width - xlate.Bounds.Width) / 2;
+			var offsetY = (xlate.Parent.ClientRectangle.Height - xlate.Bounds.Height) / 2;
+			
+			var points = new List< PointF >( Points.Count );
+
+			foreach( var point in Points )
+			{
+				points.Add( new PointF( point.X + offsetX, point.Y + offsetY ) );
+			}
+			
+			return points;
 		}
 
 		//----------------------------------------------------------------------

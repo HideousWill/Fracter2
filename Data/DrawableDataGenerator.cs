@@ -63,5 +63,25 @@ namespace Fracter2.Data
 
 			return markers;
 		}
+
+		//----------------------------------------------------------------------
+		public List< PointF > GenerateRandomPoints( int count, float scale = 1f, int seed = -1 )
+		{
+			var rand = (seed < 0) 
+				? new Random() 
+				: new Random( seed );
+
+			var points  = new List< PointF >( count );
+
+			for( var i = 0; i < count; i++ )
+			{
+				var x = (float) rand.NextDouble();
+				var y = (float) rand.NextDouble();
+
+				points.Add( new PointF( x * scale, y * scale ) );
+			}
+
+			return points;
+		}
 	}
 }

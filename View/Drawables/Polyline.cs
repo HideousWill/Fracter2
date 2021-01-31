@@ -8,7 +8,7 @@ namespace Fracter2.View.Drawables
         {
 			base.Draw( graphics );
 
-            graphics.DrawLines( Pen, Points.ToArray() );
+            graphics.DrawLines( Pen, DrawablePoints.ToArray() );
         }
     }
 }
