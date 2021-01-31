@@ -73,6 +73,7 @@ namespace Fracter2.View
 			DrawableCtl.DrawLayers();
 		}
 
+		//----------------------------------------------------------------------
 		int Sort_Y_X( PointF left, PointF right )
 		{
 			if( left.Y < right.Y ) return -1;
@@ -83,8 +84,6 @@ namespace Fracter2.View
 			
 			return 0;
 		}
-		
-		
 
 		//----------------------------------------------------------------------
 		void ColorPickerButton_Click( object sender, EventArgs e )

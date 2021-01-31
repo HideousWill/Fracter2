@@ -61,6 +61,8 @@
 			// 
 			// MainSplitter.Panel2
 			// 
+			this.MainSplitter.Panel2.AutoScroll        = true;
+			this.MainSplitter.Panel2.AutoScrollMinSize = new System.Drawing.Size( 256, 256 );
 			this.MainSplitter.Panel2.Controls.Add( this.DrawableCtl );
 			this.MainSplitter.Panel2MinSize    = 100;
 			this.MainSplitter.Size             = new System.Drawing.Size( 400, 300 );
@@ -110,17 +112,14 @@
 			// 
 			// DrawableCtl
 			// 
-			this.DrawableCtl.AutoScroll        = true;
-			this.DrawableCtl.AutoScrollMinSize = new System.Drawing.Size( 256, 256 );
-			this.DrawableCtl.BackColor         = System.Drawing.SystemColors.Control;
-			this.DrawableCtl.BackgroundColor   = System.Drawing.SystemColors.Control;
-			this.DrawableCtl.BorderStyle       = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.DrawableCtl.Dock              = System.Windows.Forms.DockStyle.Fill;
-			this.DrawableCtl.Location          = new System.Drawing.Point( 0, 0 );
-			this.DrawableCtl.MinimumSize       = new System.Drawing.Size( 100, 100 );
-			this.DrawableCtl.Name              = "DrawableCtl";
-			this.DrawableCtl.Size              = new System.Drawing.Size( 294, 298 );
-			this.DrawableCtl.TabIndex          = 0;
+			this.DrawableCtl.BackColor       = System.Drawing.SystemColors.Control;
+			this.DrawableCtl.BackgroundColor = System.Drawing.SystemColors.Control;
+			this.DrawableCtl.BorderStyle     = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.DrawableCtl.Dock            = System.Windows.Forms.DockStyle.Fill;
+			this.DrawableCtl.Location        = new System.Drawing.Point( 0, 0 );
+			this.DrawableCtl.Name            = "DrawableCtl";
+			this.DrawableCtl.Size            = new System.Drawing.Size( 294, 298 );
+			this.DrawableCtl.TabIndex        = 0;
 			// 
 			// MainAppPanelCtl
 			// 
@@ -136,6 +135,8 @@
 			this.ResumeLayout( false );
 		}
 
+		private Fracter2.View.DrawableCtl DrawableCtl;
+
 		#endregion
 
 		private System.Windows.Forms.SplitContainer MainSplitter;
@@ -144,6 +145,5 @@
 		private System.Windows.Forms.Button TestMarkersButton;
 		private System.Windows.Forms.Button ColorPickerButton;
 		private System.Windows.Forms.ColorDialog ColorPicker;
-		private DrawableCtl DrawableCtl;
 	}
 }
