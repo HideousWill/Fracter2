@@ -15,13 +15,13 @@ namespace Fracter2.View
 			InitializeComponent();
 		}
 
-		ControlWriter ConsoleWriter { get; set; }
+		TextBoxWriter ConsoleWriter { get; set; }
 
 		//----------------------------------------------------------------------
 		void MainForm_Load( object sender, EventArgs e )
 		{
-			ConsoleWriter = new ControlWriter {Target = MyConsole.TextTarget};
-
+			ConsoleWriter = new TextBoxWriter( ConsoleTextBox );
+			
 			Console.SetOut( ConsoleWriter );
 			Console.SetError( ConsoleWriter );
 		}
