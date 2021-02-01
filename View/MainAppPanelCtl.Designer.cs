@@ -114,7 +114,6 @@
 			// 
 			this.DrawableCtl.BackColor       = System.Drawing.SystemColors.Control;
 			this.DrawableCtl.BackgroundColor = System.Drawing.SystemColors.Control;
-			this.DrawableCtl.BorderStyle     = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.DrawableCtl.Dock            = System.Windows.Forms.DockStyle.Fill;
 			this.DrawableCtl.Location        = new System.Drawing.Point( 0, 0 );
 			this.DrawableCtl.Name            = "DrawableCtl";
