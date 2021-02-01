@@ -25,14 +25,48 @@ namespace Fracter2.View.Drawables
 		public Color Color { get; set; } = Color.Magenta;
 	}
 
-	public class CenterInModifier : IDrawModifier
+	public class CenterInControl : IDrawModifier
 	{
-		public Control   Parent { get; set; }
+		protected Control Parent { get; }
+
+		public CenterInControl( Control parent )
+		{
+			Parent = parent;
+		}
+
+		public PointF Apply( int offsetX, int offsetY )
+		{
+			var clientRect = Parent.ClientRectangle;
+
+			var posX = (clientRect.Width  - offsetX)  / 2;
+			var posY = (clientRect.Height - offsetY) / 2;
+
+			return new PointF( posX, posY );
+		}
 	}
 
-	public class TranslateModifier : IDrawModifier
+	public class CenterRegionInControl : CenterInControl
 	{
-		public Control   Parent { get; set; }
-		public Rectangle Bounds { get; set; }
+		Rectangle Region { get; }
+
+		public CenterRegionInControl( Rectangle region, Control parent ) : base( parent )
+		{
+			Region = region;
+		}
+
+		public List< PointF > Apply( List< PointF > sourcePoints )
+		{
+			var offsetX = (Parent.ClientRectangle.Width  - Region.Width)  / 2;
+			var offsetY = (Parent.ClientRectangle.Height - Region.Height) / 2;
+			
+			var points = new List< PointF >( sourcePoints.Count );
+
+			foreach( var point in sourcePoints )
+			{
+				points.Add( new PointF( point.X + offsetX, point.Y + offsetY ) );
+			}
+
+			return points;
+		}
 	}
 }

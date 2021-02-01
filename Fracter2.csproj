@@ -61,7 +61,6 @@
     <Compile Include="Common\Helpers.cs" />
     <Compile Include="Controller\ControlWriter.cs" />
     <Compile Include="Data\DrawableDataGenerator.cs" />
-    <Compile Include="Model\PointGraph.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="View\Drawables\DrawableBase.cs" />
     <Compile Include="View\Drawables\IDrawable.cs" />
@@ -121,6 +120,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Model" />
     <Folder Include="Model\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

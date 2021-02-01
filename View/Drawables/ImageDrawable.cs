@@ -59,16 +59,9 @@ namespace Fracter2.View.Drawables
 		{
 			if( null == Image ) return new PointF();
 
-			var centerer = GetMod< CenterInModifier >();
+			var centerer = GetMod< CenterInControl >();
 
-			if( null == centerer ) return new PointF();
-
-			var clientRect = centerer.Parent.ClientRectangle;
-
-			var posX = (clientRect.Width  - Image.Width)  / 2;
-			var posY = (clientRect.Height - Image.Height) / 2;
-
-			return new PointF( posX, posY );
+			return centerer?.Apply( Image.Width, Image.Height ) ?? new PointF();
 		}
 
 		//----------------------------------------------------------------------

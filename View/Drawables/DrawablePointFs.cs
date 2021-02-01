@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Drawing;
-using Fracter2.Data;
 
 namespace Fracter2.View.Drawables
 {
@@ -33,26 +32,15 @@ namespace Fracter2.View.Drawables
 				Pen = new Pen( c.Color );
 			}
 
-			DrawablePoints = ResolvePoints();
+			DrawablePoints = ApplyModifiers();
 		}
 
-		List< PointF > ResolvePoints()
+		//----------------------------------------------------------------------
+		protected virtual List< PointF > ApplyModifiers()
 		{
-			var xlate = GetMod< TranslateModifier >();
+			var xlate = GetMod< CenterRegionInControl >();
 
-			if( null == xlate ) return Points;
-
-			var offsetX = (xlate.Parent.ClientRectangle.Width - xlate.Bounds.Width) / 2;
-			var offsetY = (xlate.Parent.ClientRectangle.Height - xlate.Bounds.Height) / 2;
-			
-			var points = new List< PointF >( Points.Count );
-
-			foreach( var point in Points )
-			{
-				points.Add( new PointF( point.X + offsetX, point.Y + offsetY ) );
-			}
-			
-			return points;
+			return xlate?.Apply( Points ) ?? Points;
 		}
 
 		//----------------------------------------------------------------------

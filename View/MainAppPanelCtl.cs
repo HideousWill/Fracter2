@@ -25,7 +25,7 @@ namespace Fracter2.View
 
 			var drawable = new ImageDrawable( pixels, new GrayScaleColorTable( 256 ) );
 
-			drawable.Modifiers.Add( new CenterInModifier {Parent = DrawableCtl} );
+			drawable.Modifiers.Add( new CenterInControl( DrawableCtl ) );
 
 			DrawableCtl.ClearLayers();
 			DrawableCtl.AddLayer( drawable );
@@ -47,9 +47,9 @@ namespace Fracter2.View
 		{
 			var pixels = Generator.GenerateIndexedImage();
 			var image  = new ImageDrawable( pixels, new GrayScaleColorTable( 256 ) );
-			image.Modifiers.Add( new CenterInModifier {Parent = DrawableCtl} );
+			image.Modifiers.Add( new CenterInControl(  DrawableCtl ) );
 
-			var xlate = new TranslateModifier {Parent = DrawableCtl, Bounds = new Rectangle( 0, 0, 256, 256 )};
+			var xlate = new CenterRegionInControl( new Rectangle( 0, 0, 256, 256 ), DrawableCtl );
 
 			var points  = Generator.GenerateRandomPoints( 25, 255f );
 			
