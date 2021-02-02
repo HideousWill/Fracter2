@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using System.Reflection;
 using System.Windows.Forms;
 using Fracter2.Data;
 using Fracter2.Data.ColorTable;
@@ -70,6 +71,17 @@ namespace Fracter2.View
 			DrawableCtl.AddLayer( image );
 			DrawableCtl.AddLayer( markers );
 			DrawableCtl.AddLayer( polyline );
+			DrawableCtl.DrawLayers();
+		}
+
+		//----------------------------------------------------------------------
+		void EditPointsButton_Click( object sender, EventArgs e )
+		{
+			var pointEditor = new PointEditor( DrawableCtl );
+			pointEditor.Modifiers.Add( new ColorModifier {Color = Color.DarkRed} );
+			
+			DrawableCtl.ClearLayers();
+			DrawableCtl.AddLayer( pointEditor );
 			DrawableCtl.DrawLayers();
 		}
 

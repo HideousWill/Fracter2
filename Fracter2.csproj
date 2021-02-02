@@ -64,6 +64,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="View\Drawables\DrawableBase.cs" />
     <Compile Include="View\Drawables\IDrawable.cs" />
+    <Compile Include="View\Drawables\PointEditor.cs" />
     <Compile Include="View\Drawables\Polyline.cs" />
     <Compile Include="View\MainAppPanelCtl.cs">
       <SubType>UserControl</SubType>

@@ -35,6 +35,7 @@
 			this.TestImageButton   = new System.Windows.Forms.Button();
 			this.DrawableCtl       = new Fracter2.View.DrawableCtl();
 			this.ColorPicker       = new System.Windows.Forms.ColorDialog();
+			this.EditPointsButton  = new System.Windows.Forms.Button();
 			((System.ComponentModel.ISupportInitialize) (this.MainSplitter)).BeginInit();
 			this.MainSplitter.Panel1.SuspendLayout();
 			this.MainSplitter.Panel2.SuspendLayout();
@@ -53,6 +54,7 @@
 			// 
 			this.MainSplitter.Panel1.AutoScroll        = true;
 			this.MainSplitter.Panel1.AutoScrollMinSize = new System.Drawing.Size( 60, 120 );
+			this.MainSplitter.Panel1.Controls.Add( this.EditPointsButton );
 			this.MainSplitter.Panel1.Controls.Add( this.ColorPickerButton );
 			this.MainSplitter.Panel1.Controls.Add( this.TestLayersButton );
 			this.MainSplitter.Panel1.Controls.Add( this.TestMarkersButton );
@@ -120,6 +122,16 @@
 			this.DrawableCtl.Size            = new System.Drawing.Size( 294, 298 );
 			this.DrawableCtl.TabIndex        = 0;
 			// 
+			// EditPointsButton
+			// 
+			this.EditPointsButton.Location                =  new System.Drawing.Point( 4, 91 );
+			this.EditPointsButton.Name                    =  "EditPointsButton";
+			this.EditPointsButton.Size                    =  new System.Drawing.Size( 89, 23 );
+			this.EditPointsButton.TabIndex                =  9;
+			this.EditPointsButton.Text                    =  "Edit Points";
+			this.EditPointsButton.UseVisualStyleBackColor =  true;
+			this.EditPointsButton.Click                   += new System.EventHandler( this.EditPointsButton_Click );
+			// 
 			// MainAppPanelCtl
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF( 6F, 13F );
@@ -133,6 +145,8 @@
 			this.MainSplitter.ResumeLayout( false );
 			this.ResumeLayout( false );
 		}
+
+		private System.Windows.Forms.Button EditPointsButton;
 
 		private Fracter2.View.DrawableCtl DrawableCtl;
 
