@@ -45,7 +45,7 @@ namespace Fracter2.View.Drawables
 			if( PickTest( e.Location ) )
 			{
 				Action = MouseAction.Drag;
-				Console.WriteLine( "vvv Start Drag" );
+				Owner.Cursor = Cursors.Hand;
 			}
 		}
 
@@ -61,6 +61,8 @@ namespace Fracter2.View.Drawables
 				Points.Add( new PointF( e.X, e.Y ) );
 				Owner.Invalidate();
 			}
+			
+			Owner.ResetCursor();
 			
 			if( 0 == Points.Count % 10 )
 			{
@@ -149,9 +151,11 @@ namespace Fracter2.View.Drawables
 					var point = Points[ i ];
 					if( i == PickHit )
 					{
-						var brush = (MouseAction.Drag == Action) ? DragBrush : HighlightBrush;
-						
-						graphics.FillRectangle( brush,
+						graphics.FillRectangle( MouseAction.Drag != Action ? HighlightBrush : DragBrush,
+						                        point.X - DrawSize, point.Y - DrawSize,
+						                        DrawSize * 2, DrawSize * 2 );
+
+						graphics.DrawRectangle( Pens.Black,
 						                        point.X - DrawSize, point.Y - DrawSize,
 						                        DrawSize * 2, DrawSize * 2 );
 					}
