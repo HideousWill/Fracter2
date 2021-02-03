@@ -10,7 +10,7 @@ namespace Fracter2.View.Drawables
 		Control _Owner;
 		Control Owner
 		{
-			get { return _Owner; }
+			get => _Owner;
 			set
 			{
 				if( null != _Owner )
@@ -42,11 +42,11 @@ namespace Fracter2.View.Drawables
 			IsMouseDown       = true;
 			MouseDownLocation = e.Location;
 
-			if( PickTest( e.Location ) )
-			{
-				Action = MouseAction.Drag;
-				Owner.Cursor = Cursors.Hand;
-			}
+			if( ! HitTest( e.Location ) ) return;
+			
+			Action       = MouseAction.Drag;
+			Owner.Cursor = Cursors.Hand;
+			Owner.Invalidate();
 		}
 
 		//----------------------------------------------------------------------
@@ -61,9 +61,14 @@ namespace Fracter2.View.Drawables
 				Points.Add( new PointF( e.X, e.Y ) );
 				Owner.Invalidate();
 			}
-			
+			else if( IsDeleteRequest )
+			{
+				Points.RemoveAt( PickHit );
+				Owner.Invalidate();
+			}
+
 			Owner.ResetCursor();
-			
+
 			if( 0 == Points.Count % 10 )
 			{
 				Console.WriteLine( $"Points.Count = {Points.Count}" );
@@ -71,58 +76,65 @@ namespace Fracter2.View.Drawables
 		}
 
 		//----------------------------------------------------------------------
+		bool IsDeleteRequest =>
+			PickHit >= 0 &&
+			0       != (Keys.Control & Control.ModifierKeys);
+
+		//----------------------------------------------------------------------
 		void HandleMouseMove( object sender, MouseEventArgs e )
 		{
 			IsInside = Owner.ClientRectangle.Contains( e.Location );
 
 			if( ! IsInside ) return;
-
-			if( MouseAction.Normal != Action &&
-			    ! IsMouseDown )
-			{
-				Action = PickTest( e.Location )
-					? MouseAction.Highlight
-					: MouseAction.Normal;
-			}
-
-			switch( Action )
-			{
-				case MouseAction.Normal:
-				case MouseAction.Highlight:
-					Action = PickTest( e.Location )
-						? MouseAction.Highlight
-						: MouseAction.Normal;
-					break;
-				case MouseAction.Drag:
-					Points[ PickHit ] = new PointF( e.X, e.Y );
-					Owner.Invalidate();
-					break;
-			}
+			
+			if( IsMouseDown ) { DoMoveMouseDown( e ); }
+			else              { DoMoveMouseUp( e ); }
 		}
 
 		//----------------------------------------------------------------------
-		bool PickTest( Point p )
+		void DoMoveMouseUp( MouseEventArgs e )
 		{
-			for( var i = 0; i < Points.Count; i++ )
+			var action = HitTest( e.Location ) 
+				? MouseAction.Highlight
+				: MouseAction.Normal;
+
+			if( action == Action ) return;
+			
+			Action = action;
+			Owner.Invalidate();
+		}
+
+		//----------------------------------------------------------------------
+		void DoMoveMouseDown( MouseEventArgs e )
+		{
+			if( PickHit < 0 ) return;
+			
+			Points[ PickHit ] = new PointF( e.X, e.Y );
+			Owner.Invalidate();
+		}
+
+		//----------------------------------------------------------------------
+		bool HitTest( Point p )
+		{
+			for( var idx = 0; idx < Points.Count; idx++ )
 			{
-				var x = Points[ i ].X - p.X;
-				var y = Points[ i ].Y - p.Y;
+				var x = Points[ idx ].X - p.X;
+				var y = Points[ idx ].Y - p.Y;
 
 				var length = Math.Sqrt( x * x + y * y );
 
 				if( length < DrawSize )
 				{
-					PickHit = i;
-					Owner.Invalidate();
+					PickHit = idx;
 					return true;
 				}
 			}
 
-			if( PickHit >= 0 ) Owner.Invalidate();
 			PickHit = -1;
 			return false;
 		}
 
+		//----------------------------------------------------------------------
 		enum MouseAction
 		{
 			Normal,
@@ -134,6 +146,7 @@ namespace Fracter2.View.Drawables
 		int         PickHit  { get; set; } = -1;
 		float       DrawSize { get; set; } = 3f;
 		
+		//----------------------------------------------------------------------
 		SolidBrush HighlightBrush { get; set; } = new SolidBrush( Color.Coral );
 		SolidBrush DragBrush      { get; set; } = new SolidBrush( Color.Yellow );
 		

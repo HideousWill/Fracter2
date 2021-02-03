@@ -7,7 +7,7 @@ namespace Fracter2.View.Drawables
 	{
 		//----------------------------------------------------------------------
 		Pen _Pen = new Pen( Color.Magenta );
-		public Pen Pen
+		protected Pen Pen
 		{
 			get => _Pen;
 			set
