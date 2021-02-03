@@ -57,13 +57,13 @@ namespace Fracter2.View
 			points.Sort( Sort_Y_X );
 			
 			var markers = new Markers();
-			markers.Points.AddRange( points );
+			markers.AddRange( points );
 			markers.Modifiers.Add( new SizeModifier {Scale = 5f} );
 			markers.Modifiers.Add( new ColorModifier {Color = Color.DarkOrange} );
 			markers.Modifiers.Add( xlate );
 
 			var polyline = new Polyline();
-			polyline.Points.AddRange( points );
+			polyline.AddRange( points );
 			polyline.Modifiers.Add( new ColorModifier {Color = Color.ForestGreen} );
 			polyline.Modifiers.Add( xlate );
 
@@ -77,8 +77,12 @@ namespace Fracter2.View
 		//----------------------------------------------------------------------
 		void EditPointsButton_Click( object sender, EventArgs e )
 		{
+			DrawableCtl.BackgroundColor = Color.DarkSlateGray;
+			
 			var pointEditor = new PointEditor( DrawableCtl );
-			pointEditor.Modifiers.Add( new ColorModifier {Color = Color.DarkRed} );
+			pointEditor.Modifiers.Add( new ColorModifier {Color = Color.Crimson} );
+
+			pointEditor.PointSelected += i => { Console.WriteLine( $"Selected {pointEditor[ i ]}" ); };
 			
 			DrawableCtl.ClearLayers();
 			DrawableCtl.AddLayer( pointEditor );

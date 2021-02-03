@@ -32,7 +32,7 @@ namespace Fracter2.Data
 		{
 			var markers = new Markers();
 
-			markers.Points.AddRange( new List< PointF >()
+			markers.AddRange( new List< PointF >()
 			{
 				new PointF(  1.0f * scale,  1.0f * scale ),
 				new PointF( 10.0f * scale,  1.0f * scale ),
@@ -58,7 +58,7 @@ namespace Fracter2.Data
 				var x = (float) rand.NextDouble();
 				var y = (float) rand.NextDouble();
 
-				markers.Points.Add( new PointF( x * scale, y * scale ) );
+				markers.Add( new PointF( x * scale, y * scale ) );
 			}
 
 			return markers;

@@ -7,6 +7,13 @@ namespace Fracter2.View.Drawables
 	public class PointEditor : DrawablePointFs
 	{
 		//----------------------------------------------------------------------
+		public Action< int > PointSelected;
+		void OnPointSelected( int index )
+		{
+			PointSelected?.Invoke( index );
+		}
+		
+		//----------------------------------------------------------------------
 		Control _Owner;
 		Control Owner
 		{
@@ -35,7 +42,6 @@ namespace Fracter2.View.Drawables
 
 		Point MouseDownLocation { get; set; }
 		
-
 		//----------------------------------------------------------------------
 		void HandleMouseDown( object sender, MouseEventArgs e )
 		{
@@ -47,6 +53,8 @@ namespace Fracter2.View.Drawables
 			Action       = MouseAction.Drag;
 			Owner.Cursor = Cursors.Hand;
 			Owner.Invalidate();
+			
+			OnPointSelected( PickHit );
 		}
 
 		//----------------------------------------------------------------------
@@ -58,20 +66,20 @@ namespace Fracter2.View.Drawables
 
 			if( MouseAction.Drag != Action )
 			{
-				Points.Add( new PointF( e.X, e.Y ) );
+				Add( new PointF( e.X, e.Y ) );
 				Owner.Invalidate();
 			}
 			else if( IsDeleteRequest )
 			{
-				Points.RemoveAt( PickHit );
+				RemoveAt( PickHit );
 				Owner.Invalidate();
 			}
 
 			Owner.ResetCursor();
 
-			if( 0 == Points.Count % 10 )
+			if( 0 == Count % 10 )
 			{
-				Console.WriteLine( $"Points.Count = {Points.Count}" );
+				Console.WriteLine( $"Points.Count = {Count}" );
 			}
 		}
 
@@ -108,18 +116,20 @@ namespace Fracter2.View.Drawables
 		void DoMoveMouseDown( MouseEventArgs e )
 		{
 			if( PickHit < 0 ) return;
+
+			if( e.Location == MouseDownLocation ) return;
 			
-			Points[ PickHit ] = new PointF( e.X, e.Y );
+			this[ PickHit ] = new PointF( e.X, e.Y );
 			Owner.Invalidate();
 		}
 
 		//----------------------------------------------------------------------
 		bool HitTest( Point p )
 		{
-			for( var idx = 0; idx < Points.Count; idx++ )
+			for( var idx = 0; idx < Count; idx++ )
 			{
-				var x = Points[ idx ].X - p.X;
-				var y = Points[ idx ].Y - p.Y;
+				var x = this[ idx ].X - p.X;
+				var y = this[ idx ].Y - p.Y;
 
 				var length = Math.Sqrt( x * x + y * y );
 
@@ -159,9 +169,9 @@ namespace Fracter2.View.Drawables
 			{
 				var halfSize = DrawSize / 2;
 
-				for( var i = 0; i < Points.Count; i++ )
+				for( var i = 0; i < Count; i++ )
 				{
-					var point = Points[ i ];
+					var point = this[ i ];
 					if( i == PickHit )
 					{
 						graphics.FillRectangle( MouseAction.Drag != Action ? HighlightBrush : DragBrush,
