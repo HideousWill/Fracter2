@@ -62,6 +62,12 @@
     <Compile Include="Controller\ControlWriter.cs" />
     <Compile Include="Data\DrawableDataGenerator.cs" />
     <Compile Include="Program.cs" />
+    <Compile Include="View\AppRunner.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\AppRunner.Designer.cs">
+      <DependentUpon>AppRunner.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\Drawables\DrawableBase.cs" />
     <Compile Include="View\Drawables\IDrawable.cs" />
     <Compile Include="View\Drawables\PointEditor.cs" />
@@ -88,6 +94,15 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="View\Drawables\Markers.cs" />
+    <Compile Include="View\VeroniAppCtl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\VeroniAppCtl.Designer.cs">
+      <DependentUpon>VeroniAppCtl.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="View\AppRunner.resx">
+      <DependentUpon>AppRunner.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\DrawableCtl.resx">
       <DependentUpon>DrawableCtl.cs</DependentUpon>
     </EmbeddedResource>
@@ -107,6 +122,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="View\VeroniAppCtl.resx">
+      <DependentUpon>VeroniAppCtl.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -121,7 +139,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Model" />
     <Folder Include="Model\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
