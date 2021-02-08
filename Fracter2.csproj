@@ -72,6 +72,18 @@
     <Compile Include="View\Drawables\IDrawable.cs" />
     <Compile Include="View\Drawables\PointEditor.cs" />
     <Compile Include="View\Drawables\Polyline.cs" />
+    <Compile Include="View\LayerLegendItem.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\LayerLegendItem.Designer.cs">
+      <DependentUpon>LayerLegendItem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\LayerLegendCtl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\LayerLegendCtl.Designer.cs">
+      <DependentUpon>LayerLegendCtl.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\MainAppPanelCtl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -105,6 +117,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\DrawableCtl.resx">
       <DependentUpon>DrawableCtl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\LayerLegendItem.resx">
+      <DependentUpon>LayerLegendItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\LayerLegendCtl.resx">
+      <DependentUpon>LayerLegendCtl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\MainAppPanelCtl.resx">
       <DependentUpon>MainAppPanelCtl.cs</DependentUpon>
