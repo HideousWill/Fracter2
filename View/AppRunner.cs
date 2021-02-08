@@ -22,36 +22,36 @@ namespace Fracter2.View
 		}
 
 
-		UserControl _ActiveControl;
-		public UserControl ActiveControl
+		UserControl _ActiveAppControl;
+		public UserControl ActiveAppControl
 		{
-			get { return _ActiveControl; }
+			get => _ActiveAppControl;
 			set
 			{
-				if( null != _ActiveControl )
+				if( null != _ActiveAppControl )
 				{
-					_ActiveControl.Dispose();
+					_ActiveAppControl.Dispose();
 				}
-				_ActiveControl = value;
-				if( null != _ActiveControl )
+				_ActiveAppControl = value;
+				if( null != _ActiveAppControl )
 				{
-					_ActiveControl.Parent = RootSplitter.Panel1;
-					_ActiveControl.Dock = DockStyle.Fill;
+					_ActiveAppControl.Parent = RootSplitter.Panel1;
+					_ActiveAppControl.Dock = DockStyle.Fill;
 				}
 			}
 		}
 
-		void VeroniMenuItem_Click(object sender, System.EventArgs e)
+		void VeroniMenuItem_Click(object sender, EventArgs e)
 		{
-			ActiveControl = new VeroniAppCtl();
+			ActiveAppControl = new VeroniAppCtl();
 		}
 
-		private void OldCountryMenuItem_Click(object sender, EventArgs e)
+		void OldCountryMenuItem_Click(object sender, EventArgs e)
 		{
-			ActiveControl = new MainAppPanelCtl();
+			ActiveAppControl = new MainAppPanelCtl();
 		}
 
-		private void MenuStrip_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+		void MenuStrip_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
 		{
 			Console.WriteLine( $"Item clicked: {e.ClickedItem}" );
 		}

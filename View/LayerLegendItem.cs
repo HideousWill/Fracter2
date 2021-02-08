@@ -5,7 +5,7 @@ namespace Fracter2.View
 {
 	public partial class LayerLegendItem : UserControl
 	{
-		public string Text
+		public new string Text
 		{
 			get => MyButton.Text;
 			set => MyButton.Text = value;
