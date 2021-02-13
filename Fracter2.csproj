@@ -47,7 +47,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controller\MeshEditorController.cs" />
     <Compile Include="Controller\TextBoxWriter.cs" />
+    <Compile Include="Controller\VertexPainter.cs" />
     <Compile Include="Data\ColorTable\BandedColorTable.cs" />
     <Compile Include="Data\ColorTable\ColorTableBase.cs" />
     <Compile Include="Data\ColorTable\ColorTableList.cs" />
@@ -61,6 +63,7 @@
     <Compile Include="Common\Helpers.cs" />
     <Compile Include="Controller\ControlWriter.cs" />
     <Compile Include="Data\DrawableDataGenerator.cs" />
+    <Compile Include="Model\Vertex2.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="View\AppRunner.cs">
       <SubType>Form</SubType>
@@ -72,6 +75,12 @@
     <Compile Include="View\Drawables\IDrawable.cs" />
     <Compile Include="View\Drawables\PointEditor.cs" />
     <Compile Include="View\Drawables\Polyline.cs" />
+    <Compile Include="View\EditorTestAppCtl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\EditorTestAppCtl.Designer.cs">
+      <DependentUpon>EditorTestAppCtl.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\LayerLegendItem.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -106,6 +115,18 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="View\Drawables\Markers.cs" />
+    <Compile Include="View\MeshEditorApp.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\MeshEditorApp.Designer.cs">
+      <DependentUpon>MeshEditorApp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\MeshEditorControlPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\MeshEditorControlPanel.Designer.cs">
+      <DependentUpon>MeshEditorControlPanel.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\VeroniAppCtl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -117,6 +138,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\DrawableCtl.resx">
       <DependentUpon>DrawableCtl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\EditorTestAppCtl.resx">
+      <DependentUpon>EditorTestAppCtl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\LayerLegendItem.resx">
       <DependentUpon>LayerLegendItem.cs</DependentUpon>
@@ -140,6 +164,12 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="View\MeshEditorApp.resx">
+      <DependentUpon>MeshEditorApp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\MeshEditorControlPanel.resx">
+      <DependentUpon>MeshEditorControlPanel.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\VeroniAppCtl.resx">
       <DependentUpon>VeroniAppCtl.cs</DependentUpon>
     </EmbeddedResource>
@@ -156,8 +186,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Model\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

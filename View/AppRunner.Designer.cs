@@ -35,6 +35,7 @@ namespace Fracter2.View
 			this.ApplicationMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.VeroniMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.oldCountryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.MeshEditorMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.RootSplitter = new System.Windows.Forms.SplitContainer();
 			this.ConsoleTextBox = new System.Windows.Forms.TextBox();
 			this.MenuStrip.SuspendLayout();
@@ -58,6 +59,7 @@ namespace Fracter2.View
 			// ApplicationMenuItem
 			// 
 			this.ApplicationMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.MeshEditorMenuItem,
             this.VeroniMenuItem,
             this.oldCountryToolStripMenuItem});
 			this.ApplicationMenuItem.Name = "ApplicationMenuItem";
@@ -77,6 +79,13 @@ namespace Fracter2.View
 			this.oldCountryToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
 			this.oldCountryToolStripMenuItem.Text = "Old Country";
 			this.oldCountryToolStripMenuItem.Click += new System.EventHandler(this.OldCountryMenuItem_Click);
+			// 
+			// MeshEditorMenuItem
+			// 
+			this.MeshEditorMenuItem.Name = "MeshEditorMenuItem";
+			this.MeshEditorMenuItem.Size = new System.Drawing.Size(180, 22);
+			this.MeshEditorMenuItem.Text = "Mesh Editor";
+			this.MeshEditorMenuItem.Click += new System.EventHandler(this.MeshEditorMenuItem_Click);
 			// 
 			// RootSplitter
 			// 
@@ -105,7 +114,7 @@ namespace Fracter2.View
 			this.ConsoleTextBox.TabIndex = 0;
 			this.ConsoleTextBox.TabStop = false;
 			// 
-			// ApplicationHost
+			// AppRunner
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -135,5 +144,6 @@ namespace Fracter2.View
 		private System.Windows.Forms.ToolStripMenuItem oldCountryToolStripMenuItem;
 		private System.Windows.Forms.SplitContainer RootSplitter;
 		private System.Windows.Forms.TextBox ConsoleTextBox;
+		private System.Windows.Forms.ToolStripMenuItem MeshEditorMenuItem;
 	}
 }

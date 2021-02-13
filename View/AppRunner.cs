@@ -55,5 +55,10 @@ namespace Fracter2.View
 		{
 			Console.WriteLine( $"Item clicked: {e.ClickedItem}" );
 		}
+
+		private void MeshEditorMenuItem_Click(object sender, EventArgs e)
+		{
+			ActiveAppControl = new MeshEditorApp();
+		}
 	}
 }
