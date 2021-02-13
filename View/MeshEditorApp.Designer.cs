@@ -29,9 +29,11 @@
 		private void InitializeComponent()
 		{
 			this.RootSplitter = new System.Windows.Forms.SplitContainer();
+			this.DrawingSurface = new System.Windows.Forms.Panel();
 			this.ControlPanel = new Fracter2.View.MeshEditorControlPanel();
 			((System.ComponentModel.ISupportInitialize)(this.RootSplitter)).BeginInit();
 			this.RootSplitter.Panel1.SuspendLayout();
+			this.RootSplitter.Panel2.SuspendLayout();
 			this.RootSplitter.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -48,10 +50,23 @@
 			// 
 			// RootSplitter.Panel2
 			// 
-			this.RootSplitter.Panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+			this.RootSplitter.Panel2.AutoScroll = true;
+			this.RootSplitter.Panel2.BackColor = System.Drawing.SystemColors.Control;
+			this.RootSplitter.Panel2.Controls.Add(this.DrawingSurface);
 			this.RootSplitter.Size = new System.Drawing.Size(485, 296);
 			this.RootSplitter.SplitterDistance = 161;
 			this.RootSplitter.TabIndex = 0;
+			// 
+			// DrawingSurface
+			// 
+			this.DrawingSurface.AutoScroll = true;
+			this.DrawingSurface.AutoScrollMinSize = new System.Drawing.Size(256, 256);
+			this.DrawingSurface.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+			this.DrawingSurface.Location = new System.Drawing.Point(3, 3);
+			this.DrawingSurface.MinimumSize = new System.Drawing.Size(256, 256);
+			this.DrawingSurface.Name = "DrawingSurface";
+			this.DrawingSurface.Size = new System.Drawing.Size(312, 288);
+			this.DrawingSurface.TabIndex = 0;
 			// 
 			// ControlPanel
 			// 
@@ -70,6 +85,7 @@
 			this.Size = new System.Drawing.Size(485, 296);
 			this.Load += new System.EventHandler(this.MeshEditorApp_Load);
 			this.RootSplitter.Panel1.ResumeLayout(false);
+			this.RootSplitter.Panel2.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.RootSplitter)).EndInit();
 			this.RootSplitter.ResumeLayout(false);
 			this.ResumeLayout(false);
@@ -80,5 +96,6 @@
 
 		private System.Windows.Forms.SplitContainer RootSplitter;
 		private MeshEditorControlPanel ControlPanel;
+		private System.Windows.Forms.Panel DrawingSurface;
 	}
 }

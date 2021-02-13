@@ -28,11 +28,13 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
+			this.components = new System.ComponentModel.Container();
 			this.OperationGroupBox = new System.Windows.Forms.GroupBox();
-			this.PointsRadioButton = new System.Windows.Forms.RadioButton();
-			this.TrianglesRadioButton = new System.Windows.Forms.RadioButton();
 			this.TbdRadioButton = new System.Windows.Forms.RadioButton();
+			this.TrianglesRadioButton = new System.Windows.Forms.RadioButton();
+			this.PointsRadioButton = new System.Windows.Forms.RadioButton();
 			this.label1 = new System.Windows.Forms.Label();
+			this.PanelToolTip = new System.Windows.Forms.ToolTip(this.components);
 			this.OperationGroupBox.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -48,17 +50,16 @@
 			this.OperationGroupBox.TabStop = false;
 			this.OperationGroupBox.Text = "Operation";
 			// 
-			// PointsRadioButton
+			// TbdRadioButton
 			// 
-			this.PointsRadioButton.AutoSize = true;
-			this.PointsRadioButton.Checked = true;
-			this.PointsRadioButton.Location = new System.Drawing.Point(5, 19);
-			this.PointsRadioButton.Name = "PointsRadioButton";
-			this.PointsRadioButton.Size = new System.Drawing.Size(54, 17);
-			this.PointsRadioButton.TabIndex = 0;
-			this.PointsRadioButton.TabStop = true;
-			this.PointsRadioButton.Text = "Points";
-			this.PointsRadioButton.UseVisualStyleBackColor = true;
+			this.TbdRadioButton.AutoSize = true;
+			this.TbdRadioButton.Location = new System.Drawing.Point(6, 65);
+			this.TbdRadioButton.Name = "TbdRadioButton";
+			this.TbdRadioButton.Size = new System.Drawing.Size(53, 17);
+			this.TbdRadioButton.TabIndex = 2;
+			this.TbdRadioButton.TabStop = true;
+			this.TbdRadioButton.Text = "[TBD]";
+			this.TbdRadioButton.UseVisualStyleBackColor = true;
 			// 
 			// TrianglesRadioButton
 			// 
@@ -71,16 +72,18 @@
 			this.TrianglesRadioButton.Text = "Triangles";
 			this.TrianglesRadioButton.UseVisualStyleBackColor = true;
 			// 
-			// TbdRadioButton
+			// PointsRadioButton
 			// 
-			this.TbdRadioButton.AutoSize = true;
-			this.TbdRadioButton.Location = new System.Drawing.Point(6, 65);
-			this.TbdRadioButton.Name = "TbdRadioButton";
-			this.TbdRadioButton.Size = new System.Drawing.Size(53, 17);
-			this.TbdRadioButton.TabIndex = 2;
-			this.TbdRadioButton.TabStop = true;
-			this.TbdRadioButton.Text = "[TBD]";
-			this.TbdRadioButton.UseVisualStyleBackColor = true;
+			this.PointsRadioButton.AutoSize = true;
+			this.PointsRadioButton.Checked = true;
+			this.PointsRadioButton.Location = new System.Drawing.Point(5, 19);
+			this.PointsRadioButton.Name = "PointsRadioButton";
+			this.PointsRadioButton.Size = new System.Drawing.Size(54, 17);
+			this.PointsRadioButton.TabIndex = 0;
+			this.PointsRadioButton.TabStop = true;
+			this.PointsRadioButton.Text = "Points";
+			this.PanelToolTip.SetToolTip(this.PointsRadioButton, "Add:        Shift-Click\r\nRemove: Ctl-Click\r\nMove:      Click-Drag");
+			this.PointsRadioButton.UseVisualStyleBackColor = true;
 			// 
 			// label1
 			// 
@@ -114,5 +117,6 @@
 		private System.Windows.Forms.RadioButton TrianglesRadioButton;
 		private System.Windows.Forms.RadioButton PointsRadioButton;
 		private System.Windows.Forms.Label label1;
+		private System.Windows.Forms.ToolTip PanelToolTip;
 	}
 }

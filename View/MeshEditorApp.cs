@@ -1,5 +1,7 @@
-﻿using System.Windows.Forms;
+﻿using System.Collections.Generic;
+using System.Windows.Forms;
 using Fracter2.Controller;
+using Fracter2.Model;
 
 namespace Fracter2.View
 {
@@ -12,9 +14,11 @@ namespace Fracter2.View
 
 		MeshEditorController EditorController { get; set; }
 
-		void MeshEditorApp_Load(object sender, System.EventArgs e)
+		Mesh2D Mesh { get; } = new Mesh2D();
+
+		void MeshEditorApp_Load( object sender, System.EventArgs e )
 		{
-			EditorController = new MeshEditorController() { Surface = RootSplitter.Panel2 };
+			EditorController = new MeshEditorController( Mesh, DrawingSurface );
 		}
 	}
 }

@@ -15,9 +15,11 @@ namespace Fracter2.Controller
 		{
 			PointSelected?.Invoke( index );
 		}
-		
+
 		//----------------------------------------------------------------------
-		List< Vertex2 > Points { get; set; } = new List< Vertex2 >();
+		Mesh2D          Mesh   { get; }
+		List< Vertex2 > Points => Mesh.Positions;
+
 		
 		//----------------------------------------------------------------------
 		Control _Surface;
@@ -84,7 +86,8 @@ namespace Fracter2.Controller
 
 			if( ! IsInside ) return;
 
-			if( MouseAction.Drag != Action )
+			if( MouseAction.Drag != Action &&
+			    IsAddRequest )
 			{
 				Points.Add( new Vertex2( e.X, e.Y ) );
 				Invalidate();
@@ -102,11 +105,6 @@ namespace Fracter2.Controller
 				Console.WriteLine( $"Points.Count = {Points.Count}" );
 			}
 		}
-
-		//----------------------------------------------------------------------
-		bool IsDeleteRequest =>
-			PickHit >= 0 &&
-			0       != (Keys.Control & Control.ModifierKeys);
 
 		//----------------------------------------------------------------------
 		void HandleMouseMove( object sender, MouseEventArgs e )
@@ -165,6 +163,15 @@ namespace Fracter2.Controller
 		}
 
 		//----------------------------------------------------------------------
+		bool IsAddRequest =>
+			0 != (Keys.Shift & Control.ModifierKeys);
+
+		//----------------------------------------------------------------------
+		bool IsDeleteRequest =>
+			PickHit >= 0 &&
+			0       != (Keys.Control & Control.ModifierKeys);
+
+		//----------------------------------------------------------------------
 		enum MouseAction
 		{
 			Normal,
@@ -196,6 +203,13 @@ namespace Fracter2.Controller
 					}
 				}
 			}
+		}
+
+		//----------------------------------------------------------------------
+		public MeshEditorController( Mesh2D mesh, Control surface )
+		{
+			Mesh    = mesh;
+			Surface = surface;
 		}
 
 		//----------------------------------------------------------------------

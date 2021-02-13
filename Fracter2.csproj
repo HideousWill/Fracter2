@@ -63,6 +63,7 @@
     <Compile Include="Common\Helpers.cs" />
     <Compile Include="Controller\ControlWriter.cs" />
     <Compile Include="Data\DrawableDataGenerator.cs" />
+    <Compile Include="Model\Mesh2D.cs" />
     <Compile Include="Model\Vertex2.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="View\AppRunner.cs">
