@@ -47,6 +47,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controller\IHitTester.cs" />
     <Compile Include="Controller\MeshEditorController.cs" />
     <Compile Include="Controller\TextBoxWriter.cs" />
     <Compile Include="Controller\VertexPainter.cs" />

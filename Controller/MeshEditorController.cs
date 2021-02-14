@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Numerics;
 using System.Windows.Forms;
 using Fracter2.Model;
 
@@ -20,7 +19,6 @@ namespace Fracter2.Controller
 		Mesh2D          Mesh   { get; }
 		List< Vertex2 > Points => Mesh.Positions;
 
-		
 		//----------------------------------------------------------------------
 		Control _Surface;
 		public Control Surface
@@ -35,6 +33,7 @@ namespace Fracter2.Controller
 					_Surface.MouseMove -= HandleMouseMove;
 					_Surface.Paint     -= HandlePaint;
 				}
+
 				_Surface = value;
 				if( null != _Surface )
 				{
@@ -59,23 +58,17 @@ namespace Fracter2.Controller
 		Point MouseDownLocation { get; set; }
 
 		//----------------------------------------------------------------------
-		void Invalidate()
-		{
-			Surface.Invalidate();
-		}
-		
-		//----------------------------------------------------------------------
 		void HandleMouseDown( object sender, MouseEventArgs e )
 		{
 			IsMouseDown       = true;
 			MouseDownLocation = e.Location;
 
-			if( ! HitTest( e.Location ) ) return;
-			
+			if( ! HitTester.Test( e.Location ) ) return;
+
 			Action         = MouseAction.Drag;
 			Surface.Cursor = Cursors.Hand;
 			Invalidate();
-			
+
 			OnPointSelected( PickHit );
 		}
 
@@ -99,11 +92,6 @@ namespace Fracter2.Controller
 			}
 
 			Surface.ResetCursor();
-
-			if( 0 == Points.Count % 10 )
-			{
-				Console.WriteLine( $"Points.Count = {Points.Count}" );
-			}
 		}
 
 		//----------------------------------------------------------------------
@@ -112,20 +100,26 @@ namespace Fracter2.Controller
 			IsInside = Surface.ClientRectangle.Contains( e.Location );
 
 			if( ! IsInside ) return;
-			
-			if( IsMouseDown ) { DoMoveMouseDown( e ); }
-			else              { DoMoveMouseUp( e ); }
+
+			if( IsMouseDown )
+			{
+				DoMoveMouseDown( e );
+			}
+			else
+			{
+				DoMoveMouseUp( e );
+			}
 		}
 
 		//----------------------------------------------------------------------
 		void DoMoveMouseUp( MouseEventArgs e )
 		{
-			var action = HitTest( e.Location ) 
+			var action = HitTester.Test( e.Location )
 				? MouseAction.Highlight
 				: MouseAction.Normal;
 
 			if( action == Action ) return;
-			
+
 			Action = action;
 			Invalidate();
 		}
@@ -136,30 +130,9 @@ namespace Fracter2.Controller
 			if( PickHit < 0 ) return;
 
 			if( e.Location == MouseDownLocation ) return;
-			
+
 			Points[ PickHit ] = new Vertex2( e.X, e.Y );
 			Invalidate();
-		}
-
-		//----------------------------------------------------------------------
-		bool HitTest( Point p )
-		{
-			var pVec        = new Vector2( p.X, p.Y );
-			var sizeSquared = DrawSize * DrawSize;
-				
-			for( var idx = 0; idx < Points.Count; idx++ )
-			{
-				var distSq = Vector2.DistanceSquared( pVec, Points[ idx ].Position );
-				
-				if( distSq < sizeSquared )
-				{
-					PickHit = idx;
-					return true;
-				}
-			}
-
-			PickHit = -1;
-			return false;
 		}
 
 		//----------------------------------------------------------------------
@@ -178,9 +151,8 @@ namespace Fracter2.Controller
 			Highlight,
 			Drag
 		}
-		
+
 		MouseAction Action   { get; set; }
-		int         PickHit  { get; set; } = -1;
 		float       DrawSize { get; set; } = 3f;
 
 		//----------------------------------------------------------------------
@@ -206,10 +178,21 @@ namespace Fracter2.Controller
 		}
 
 		//----------------------------------------------------------------------
+		int        PickHit   => HitTester.Index;
+		IHitTester HitTester { get; }
+
+		//----------------------------------------------------------------------
+		void Invalidate()
+		{
+			Surface.Invalidate();
+		}
+
+		//----------------------------------------------------------------------
 		public MeshEditorController( Mesh2D mesh, Control surface )
 		{
-			Mesh    = mesh;
-			Surface = surface;
+			Mesh      = mesh;
+			Surface   = surface;
+			HitTester = new VertexHitTester( DrawSize, Points );
 		}
 
 		//----------------------------------------------------------------------
