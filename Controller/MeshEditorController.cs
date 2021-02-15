@@ -9,15 +9,54 @@ namespace Fracter2.Controller
 	public class MeshEditorController : IDisposable
 	{
 		//----------------------------------------------------------------------
-		public Action< int > PointSelected;
+		public event Action< int > VertexSelected;
 		void OnPointSelected( int index )
 		{
-			PointSelected?.Invoke( index );
+			VertexSelected?.Invoke( index );
 		}
 
 		//----------------------------------------------------------------------
-		Mesh2D          Mesh   { get; }
+		public event Action< Vertex2 > AddVertexReq;
+		void OnAddVertexReq( Vertex2 vertex )
+		{
+			AddVertexReq?.Invoke( vertex );
+		}
+
+		//----------------------------------------------------------------------
+		public event Action< int > DeleteVertexReq;
+		void OnDeleteVertexReq( int index )
+		{
+			DeleteVertexReq?.Invoke( index );
+		}
+
+		//----------------------------------------------------------------------
+		public event Action< int, Vertex2 > MoveVertexReq;
+		void OnMoveVertexReq( int index, Vertex2 newPosition )
+		{
+			MoveVertexReq?.Invoke( index, newPosition );
+		}
+
+		//----------------------------------------------------------------------
 		List< Vertex2 > Points => Mesh.Positions;
+
+		//----------------------------------------------------------------------
+		Mesh2D _Mesh;
+		public Mesh2D Mesh
+		{
+			get => _Mesh;
+			set
+			{
+				if( null != _Mesh )
+				{
+					_Mesh.Changed -= HandleMeshChanged;
+				}
+				_Mesh = value;
+				if( null != _Mesh )
+				{
+					_Mesh.Changed += HandleMeshChanged;
+				}
+			}
+		}
 
 		//----------------------------------------------------------------------
 		Control _Surface;
@@ -43,6 +82,12 @@ namespace Fracter2.Controller
 					_Surface.Paint     += HandlePaint;
 				}
 			}
+		}
+
+		//----------------------------------------------------------------------
+		void HandleMeshChanged()
+		{
+			Invalidate();
 		}
 
 		//----------------------------------------------------------------------
@@ -82,13 +127,11 @@ namespace Fracter2.Controller
 			if( MouseAction.Drag != Action &&
 			    IsAddRequest )
 			{
-				Points.Add( new Vertex2( e.X, e.Y ) );
-				Invalidate();
+				OnAddVertexReq( new Vertex2( e.X, e.Y ) );
 			}
 			else if( IsDeleteRequest )
 			{
-				Points.RemoveAt( PickHit );
-				Invalidate();
+				OnDeleteVertexReq( PickHit );
 			}
 
 			Surface.ResetCursor();
@@ -131,8 +174,7 @@ namespace Fracter2.Controller
 
 			if( e.Location == MouseDownLocation ) return;
 
-			Points[ PickHit ] = new Vertex2( e.X, e.Y );
-			Invalidate();
+			OnMoveVertexReq( PickHit, new Vertex2( e.X, e.Y ) );
 		}
 
 		//----------------------------------------------------------------------
