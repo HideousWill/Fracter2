@@ -16,9 +16,12 @@
 			if (disposing && (components != null))
 			{
 				components.Dispose();
+				OnDispose();
 			}
 			base.Dispose(disposing);
 		}
+
+		partial void OnDispose();
 
 		#region Component Designer generated code
 
@@ -29,8 +32,8 @@
 		private void InitializeComponent()
 		{
 			this.RootSplitter = new System.Windows.Forms.SplitContainer();
-			this.DrawingSurface = new System.Windows.Forms.Panel();
 			this.ControlPanel = new Fracter2.View.MeshEditorControlPanel();
+			this.DrawingSurface = new System.Windows.Forms.Panel();
 			((System.ComponentModel.ISupportInitialize)(this.RootSplitter)).BeginInit();
 			this.RootSplitter.Panel1.SuspendLayout();
 			this.RootSplitter.Panel2.SuspendLayout();
@@ -57,6 +60,14 @@
 			this.RootSplitter.SplitterDistance = 161;
 			this.RootSplitter.TabIndex = 0;
 			// 
+			// ControlPanel
+			// 
+			this.ControlPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.ControlPanel.Location = new System.Drawing.Point(0, 0);
+			this.ControlPanel.Name = "ControlPanel";
+			this.ControlPanel.Size = new System.Drawing.Size(159, 294);
+			this.ControlPanel.TabIndex = 0;
+			// 
 			// DrawingSurface
 			// 
 			this.DrawingSurface.AutoScroll = true;
@@ -67,14 +78,6 @@
 			this.DrawingSurface.Name = "DrawingSurface";
 			this.DrawingSurface.Size = new System.Drawing.Size(312, 288);
 			this.DrawingSurface.TabIndex = 0;
-			// 
-			// ControlPanel
-			// 
-			this.ControlPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.ControlPanel.Location = new System.Drawing.Point(0, 0);
-			this.ControlPanel.Name = "ControlPanel";
-			this.ControlPanel.Size = new System.Drawing.Size(159, 294);
-			this.ControlPanel.TabIndex = 0;
 			// 
 			// MeshEditorApp
 			// 

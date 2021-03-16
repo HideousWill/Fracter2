@@ -58,6 +58,8 @@ namespace Fracter2.Controller
 			}
 		}
 
+		public IEdgeSource EdgeSource { get; set; }
+
 		//----------------------------------------------------------------------
 		Control _Surface;
 		public Control Surface
@@ -217,6 +219,47 @@ namespace Fracter2.Controller
 					}
 				}
 			}
+
+			DrawEdges( graphics );
+		}
+
+		//----------------------------------------------------------------------
+		void DrawEdges( Graphics graphics )
+		{
+			if( null == EdgeSource ) return;
+
+			int i = 0;
+
+			for( i = 0; i < EdgeSource.Edges.Count; i++ )
+			{
+				var edge = EdgeSource.Edges[ i ];
+
+				var pen = (i == EdgeSource.Edges.Count - 1)
+					? Pens.Cyan
+					: Pens.AntiqueWhite;
+
+				DrawEdge( graphics, edge, pen );
+			}
+
+			//			foreach ( var edge in EdgeSource.Edges )
+			//			{
+			//				var v1 = Points[ edge.V1 ];
+			//				var v2 = Points[ edge.V2 ];
+			//
+			//				graphics.DrawLine( Pens.AntiqueWhite, 
+			//				                   new PointF( v1.X, v1.Y ), 
+			//				                   new PointF( v2.X, v2.Y ) );
+			//			}
+		}
+
+		void DrawEdge( Graphics graphics, Edge edge, Pen pen )
+		{
+			var v1 = Points[ edge.V1 ];
+			var v2 = Points[ edge.V2 ];
+
+			graphics.DrawLine( pen,
+			                   new PointF( v1.X, v1.Y ),
+			                   new PointF( v2.X, v2.Y ) );
 		}
 
 		//----------------------------------------------------------------------

@@ -31,17 +31,18 @@
 			this.components = new System.ComponentModel.Container();
 			this.OperationGroupBox = new System.Windows.Forms.GroupBox();
 			this.TbdRadioButton = new System.Windows.Forms.RadioButton();
-			this.TrianglesRadioButton = new System.Windows.Forms.RadioButton();
+			this.StripsRadioButton = new System.Windows.Forms.RadioButton();
 			this.PointsRadioButton = new System.Windows.Forms.RadioButton();
 			this.label1 = new System.Windows.Forms.Label();
 			this.PanelToolTip = new System.Windows.Forms.ToolTip(this.components);
+			this.ClearButton = new System.Windows.Forms.Button();
 			this.OperationGroupBox.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// OperationGroupBox
 			// 
 			this.OperationGroupBox.Controls.Add(this.TbdRadioButton);
-			this.OperationGroupBox.Controls.Add(this.TrianglesRadioButton);
+			this.OperationGroupBox.Controls.Add(this.StripsRadioButton);
 			this.OperationGroupBox.Controls.Add(this.PointsRadioButton);
 			this.OperationGroupBox.Location = new System.Drawing.Point(3, 16);
 			this.OperationGroupBox.Name = "OperationGroupBox";
@@ -60,17 +61,19 @@
 			this.TbdRadioButton.TabStop = true;
 			this.TbdRadioButton.Text = "[TBD]";
 			this.TbdRadioButton.UseVisualStyleBackColor = true;
+			this.TbdRadioButton.CheckedChanged += new System.EventHandler(this.HandleRadioButtonChanged);
 			// 
-			// TrianglesRadioButton
+			// StripsRadioButton
 			// 
-			this.TrianglesRadioButton.AutoSize = true;
-			this.TrianglesRadioButton.Location = new System.Drawing.Point(5, 42);
-			this.TrianglesRadioButton.Name = "TrianglesRadioButton";
-			this.TrianglesRadioButton.Size = new System.Drawing.Size(68, 17);
-			this.TrianglesRadioButton.TabIndex = 1;
-			this.TrianglesRadioButton.TabStop = true;
-			this.TrianglesRadioButton.Text = "Triangles";
-			this.TrianglesRadioButton.UseVisualStyleBackColor = true;
+			this.StripsRadioButton.AutoSize = true;
+			this.StripsRadioButton.Location = new System.Drawing.Point(5, 42);
+			this.StripsRadioButton.Name = "StripsRadioButton";
+			this.StripsRadioButton.Size = new System.Drawing.Size(51, 17);
+			this.StripsRadioButton.TabIndex = 1;
+			this.StripsRadioButton.TabStop = true;
+			this.StripsRadioButton.Text = "Strips";
+			this.StripsRadioButton.UseVisualStyleBackColor = true;
+			this.StripsRadioButton.CheckedChanged += new System.EventHandler(this.HandleRadioButtonChanged);
 			// 
 			// PointsRadioButton
 			// 
@@ -84,6 +87,7 @@
 			this.PointsRadioButton.Text = "Points";
 			this.PanelToolTip.SetToolTip(this.PointsRadioButton, "Add:        Shift-Click\r\nRemove: Ctl-Click\r\nMove:      Click-Drag");
 			this.PointsRadioButton.UseVisualStyleBackColor = true;
+			this.PointsRadioButton.CheckedChanged += new System.EventHandler(this.HandleRadioButtonChanged);
 			// 
 			// label1
 			// 
@@ -96,10 +100,21 @@
 			this.label1.Text = "Mesh Editor";
 			this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
 			// 
+			// ClearButton
+			// 
+			this.ClearButton.Location = new System.Drawing.Point(4, 189);
+			this.ClearButton.Name = "ClearButton";
+			this.ClearButton.Size = new System.Drawing.Size(75, 23);
+			this.ClearButton.TabIndex = 2;
+			this.ClearButton.Text = "Clear";
+			this.ClearButton.UseVisualStyleBackColor = true;
+			this.ClearButton.Click += new System.EventHandler(this.ClearButton_Click);
+			// 
 			// MeshEditorControlPanel
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.Controls.Add(this.ClearButton);
 			this.Controls.Add(this.label1);
 			this.Controls.Add(this.OperationGroupBox);
 			this.Name = "MeshEditorControlPanel";
@@ -114,9 +129,10 @@
 
 		private System.Windows.Forms.GroupBox OperationGroupBox;
 		private System.Windows.Forms.RadioButton TbdRadioButton;
-		private System.Windows.Forms.RadioButton TrianglesRadioButton;
+		private System.Windows.Forms.RadioButton StripsRadioButton;
 		private System.Windows.Forms.RadioButton PointsRadioButton;
 		private System.Windows.Forms.Label label1;
 		private System.Windows.Forms.ToolTip PanelToolTip;
+		private System.Windows.Forms.Button ClearButton;
 	}
 }
